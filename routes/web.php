@@ -18,3 +18,4 @@ Route::get('/', function () {
 Route::get('/home_ab', function () {
     return view('layouts.master_ab');
 });
+
