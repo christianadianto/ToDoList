@@ -30,31 +30,34 @@
         <div class="container">
             <div class="col-md-offset-4 col-md-4">
                 <div class="box">
-                    <div class="form-group">
-                        <div class="form-text">
-                            <span>Task Name</span>
+                    <form method="POST" action="{{ url('/insert_task') }}" >
+                        {{csrf_field()}}
+                        <div class="form-group">
+                            <div class="form-text">
+                                <span>Task Name</span>
+                            </div>
+                            <input type="text" class="form-control" name="name">
                         </div>
-                        <input type="text" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <div class="form-text">
-                            <span>Description</span>
+                        <div class="form-group">
+                            <div class="form-text">
+                                <span>Description</span>
+                            </div>
+                            <textarea class="form-control" rows="5" name="description"></textarea>
                         </div>
-                        <textarea class="form-control" rows="5"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <div class="form-text">
-                            <span>PIC</span>
+                        <div class="form-group">
+                            <div class="form-text">
+                                <span>PIC</span>
+                            </div>
+                            <select class="form-control" name="pic">
+                                <option>AB</option>
+                                <option>CA</option>
+                                <option>BP</option>
+                            </select>
                         </div>
-                        <select class="form-control">
-                            <option>AB</option>
-                            <option>CA</option>
-                            <option>BP</option>
-                        </select>
-                    </div>
-                    <div class="text-center form-group btn-form-group">
-                        <button class="btn btn-default btn-submit">Insert</button>
-                    </div>
+                        <div class="text-center form-group btn-form-group">
+                            <button class="btn btn-default btn-submit">Insert</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

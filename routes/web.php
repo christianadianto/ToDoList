@@ -19,3 +19,4 @@ Route::get('/home_ab', function () {
     return view('layouts.master_ab');
 });
 
+Route::post('/insert_task', 'TaskController@insert');
