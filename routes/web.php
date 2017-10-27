@@ -15,8 +15,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/home_ab', function () {
-    return view('layouts.master_ab');
-});
+Route::get('/home_ab', 'TaskController@index');
 
 Route::post('/insert_task', 'TaskController@insert');

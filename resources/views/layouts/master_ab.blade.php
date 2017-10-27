@@ -49,9 +49,10 @@
                                 <span>PIC</span>
                             </div>
                             <select class="form-control" name="pic">
-                                <option>AB</option>
-                                <option>CA</option>
-                                <option>BP</option>
+                                <option selected>Choose</option>
+                                @foreach($users as $user)
+                                    <option value="{{$user->id}}">{{$user->initial}}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="text-center form-group btn-form-group">
