@@ -17,7 +17,6 @@ class CreateTasksTable extends Migration
             $table->increments('id');
             $table->string('task_name');
             $table->string('task_detail');
-            $table->rememberToken();
             $table->timestamps();
         });
     }

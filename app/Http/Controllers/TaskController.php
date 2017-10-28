@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Task;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -14,8 +15,12 @@ class TaskController extends Controller
     }
 
     public function insert(Request $request){
-        dd($request);
-        echo('test');
+        $initials = $request->input('initials');
+
+        $task = new Task();
+        $task->task_name = $request->task_name;
+        $task->task_detail = $request->task_detail;
+
     }
 
 }

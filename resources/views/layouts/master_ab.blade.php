@@ -1,67 +1,61 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>NA-Task</title>
-    @include('layouts.header_ab')
-    <link href="{{ asset('css/master_ab.css') }}" rel="stylesheet">
-</head>
-<body>
-    {{--START HEADER--}}
-    <div class="header">
-        <nav class="navbar navbar-inverse">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="#">NA-TASK</a>
-                </div>
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">Home</a></li>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Insert Task</a></li>
-                </ul>
-            </div>
-        </nav>
-    </div>
-    {{--END HEADER--}}
+@extends('layouts.header_ab')
+
+@section('content')
     <div class="content">
         <div class="container">
             <div class="col-md-offset-4 col-md-4">
                 <div class="box">
-                    <form method="POST" action="{{ url('/insert_task') }}" >
+                    <form class="form_task" method="post" action="/insert_task">
                         {{csrf_field()}}
                         <div class="form-group">
                             <div class="form-text">
                                 <span>Task Name</span>
                             </div>
-                            <input type="text" class="form-control" name="name">
+                            <input type="text" class="form-control" name="task_name">
                         </div>
                         <div class="form-group">
                             <div class="form-text">
                                 <span>Description</span>
                             </div>
-                            <textarea class="form-control" rows="5" name="description"></textarea>
+                            <textarea class="form-control" rows="5" name="task_detail"></textarea>
                         </div>
                         <div class="form-group">
                             <div class="form-text">
                                 <span>PIC</span>
                             </div>
-                            <select class="form-control" name="pic">
-                                <option selected>Choose</option>
+                            <select class="selectpicker" multiple data-live-search="true" title="choose PIC" name="initials[]">
+                                <option value="0">All</option>
                                 @foreach($users as $user)
-                                    <option value="{{$user->id}}">{{$user->initial}}</option>
+                                <option value="{{$user->id}}">{{$user->initial}}</option>
                                 @endforeach
                             </select>
                         </div>
                         <div class="text-center form-group btn-form-group">
-                            <button class="btn btn-default btn-submit">Insert</button>
+                            <button id="btn_submit" class="btn btn-default btn-submit">Insert</button>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-</body>
-</html>
+
+    <script>
+//        $(document).ready(function () {
+//            $('#btn_submit').click(function () {
+//                var selectedValues = $('.selectpicker').val();
+//                console.log(selectedValues);
+//                alert(selectedValues);
+//
+//                $.ajax({
+//                   type:"POST",
+//                    url:'/insert_task',
+//                    data:$('.form_task').serialize(),
+//                    dataType: 'json',
+//                    success:function(data){
+//                       alert(data);
+//                    }
+//                });
+//            })
+//        });
+    </script>
+@endsection
