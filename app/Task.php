@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Task extends Model
 {
-    protected function user(){
+    public function users(){
         return $this->belongsToMany('App\User');
     }
 

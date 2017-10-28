@@ -27,7 +27,7 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    protected function task(){
+    public function tasks(){
         return $this->belongsToMany('App\Task');
     }
 }

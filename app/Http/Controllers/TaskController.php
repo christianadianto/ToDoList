@@ -20,6 +20,12 @@ class TaskController extends Controller
         $task = new Task();
         $task->task_name = $request->task_name;
         $task->task_detail = $request->task_detail;
+        $task->save();
+
+        $task->users()->attach($initials);
+
+
+        return redirect()->back();
 
     }
 
