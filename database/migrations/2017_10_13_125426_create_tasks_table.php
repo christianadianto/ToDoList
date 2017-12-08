@@ -17,6 +17,9 @@ class CreateTasksTable extends Migration
             $table->increments('id');
             $table->string('task_name');
             $table->string('task_detail');
+            $table->integer('creator_id')->unsigned();
+            $table->foreign('creator_id')->references('id')->on('users');
+            $table->string('task_status');
             $table->timestamps();
         });
     }

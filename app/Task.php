@@ -10,4 +10,8 @@ class Task extends Model
         return $this->belongsToMany('App\User');
     }
 
+    public function user(){
+        return $this->belongsTo('App\User','id','creator_id');
+    }
+
 }

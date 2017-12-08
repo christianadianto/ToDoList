@@ -13,8 +13,8 @@ class DatabaseSeeder extends Seeder
     {
         // $this->call(UsersTableSeeder::class);
         DB::table('users')->insert([
-            'initial' => 'gv16-2',
-            'password' => bcrypt('gvgvgv'),
+            'initial' => 'yf16-1',
+            'password' => bcrypt('yfyfyf'),
         ]);
     }
 }

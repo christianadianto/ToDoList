@@ -5,7 +5,7 @@
         <div class="container">
             <div class="col-md-offset-4 col-md-4">
                 <div class="box">
-                    <form class="form_task" method="post" action="/insert_task">
+                    <form class="form_task" method="post" action="/insert">
                         {{csrf_field()}}
                         <div class="form-group">
                             <div class="form-text">
@@ -23,8 +23,9 @@
                             <div class="form-text">
                                 <span>PIC</span>
                             </div>
-                            <select class="selectpicker" multiple data-live-search="true" title="choose PIC" name="initials[]">
-                                <option value="0">All</option>
+                            <select class="selectpicker" multiple data-live-search="true"
+                                    title="choose PIC" name="initials[]" data-size="3"
+                                    data-actions-box="true">
                                 @foreach($users as $user)
                                 <option value="{{$user->id}}">{{$user->initial}}</option>
                                 @endforeach
@@ -39,23 +40,4 @@
         </div>
     </div>
 
-    <script>
-//        $(document).ready(function () {
-//            $('#btn_submit').click(function () {
-//                var selectedValues = $('.selectpicker').val();
-//                console.log(selectedValues);
-//                alert(selectedValues);
-//
-//                $.ajax({
-//                   type:"POST",
-//                    url:'/insert_task',
-//                    data:$('.form_task').serialize(),
-//                    dataType: 'json',
-//                    success:function(data){
-//                       alert(data);
-//                    }
-//                });
-//            })
-//        });
-    </script>
 @endsection
