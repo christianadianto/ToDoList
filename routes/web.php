@@ -24,3 +24,5 @@ Route::post('/insert', 'TaskController@insert');
 Route::delete('/delete_task', 'TaskController@delete');
 
 Route::put('/update_task', 'TaskController@update');
+
+Route::get('/get_task/{id}', 'TaskController@get_task');

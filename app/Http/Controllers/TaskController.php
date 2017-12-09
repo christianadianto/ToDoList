@@ -36,12 +36,31 @@ class TaskController extends Controller
         $task->task_status = "not done";
         $task->save();
 
-        if($initials[0] == 0){
-            $user = User::all();
+        $task->users()->attach($initials);
+
+        $email_list = [];
+        foreach ($task->users as $user){
+            if($user->email != '')
+                $email_list []= $user->email;
         }
-        else{
-            $task->users()->attach($initials);
-        }
+
+        $url = 'http://api.na.slc/send-mail';
+        $fields = array(
+            'from' => "ToDoList Task",
+            'to' => $email_list,
+            'subject' => "New ToDoList Come For You",
+            'content' => "Dear rekans, Ada ToDoList baru untuk anda. mohon segera di cek"
+        );
+
+        $fields_string = http_build_query($fields);
+        $ch = curl_init();
+        curl_setopt($ch,CURLOPT_URL, $url);
+        curl_setopt($ch,CURLOPT_POST, 1);
+        curl_setopt($ch,CURLOPT_POSTFIELDS, $fields_string);
+
+        $result = curl_exec($ch);
+
+        curl_close($ch);
 
         return redirect()->back();
     }

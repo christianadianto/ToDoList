@@ -27,7 +27,7 @@
                         <td>{{$task->created_at->toDateString()}}</td>
                         <td>{{$task->task_status}}</td>
                         <td>
-                            <button type="button" class="btn btn-info btn-lg btn-edit" data-toggle="modal" data-target="#myModal">
+                            <button type="button" class="btn btn-info btn-lg btn-edit">
                                 <i class="fa fa-pencil fa-2x" aria-hidden="true"></i>
                             </button>
                         </td>
@@ -55,14 +55,18 @@
                     <div class="modal-body">
                         <form>
                             <textarea id="detail" class="form-control" rows="5" name="task_detail"></textarea>
+                            <br>
                             <p>pic</p>
-                            <select class="selectpicker" multiple data-live-search="true"
-                                    title="choose PIC" name="initials[]" data-size="3"
-                                    data-actions-box="true">
+
+                            <p id="pic-list"></p>
+
+                            <select id="my-select" multiple
+                                    title="choose PIC" name="initials[]" data-size="3" style="width: 100%">
                                 @foreach($users as $user)
-                                    <option value="{{$user->id}}">{{$user->initial}}</option>
+                                    <option class="user-option" value="{{$user->id}}">{{$user->initial}}</option>
                                 @endforeach
                             </select>
+                            <br>
                             <p id="status">status</p>
                         </form>
                     </div>
@@ -77,7 +81,28 @@
     </div>
 
     <script>
+
+
+//        function update_pic_list(){
+//            pic_list = $('#pic-list')[0];
+//            pic_list.innerHTML = "";
+//
+//            for(i=0, j = $('#my-select').find(":selected");i< j.length;i++){
+//                pic_list.innerHTML += j[i].text
+//                if(i != j.length -1){
+//                    pic_list.innerHTML += ",";
+//                }
+//            }
+//        }
+
         $(document).ready(function () {
+
+            $("#my-select").change(function(){
+                //update_pic_list()
+            });
+
+            $('#my-select').select2();
+
             $('.btn-delete').click(function () {
 
                 var token = $(this).data('token');
@@ -105,15 +130,34 @@
                         console.log(response);
                         $('#task_name').html(response.task.task_name);
                         $('#detail').html(response.task.task_detail);
-                        $pic = new Array();
-                        for($i=0;$i<response.pic.length;$i++){
-                            $pic[$i] = " "+response.pic[$i].initial;
+                        pic = new Array();
+
+
+                        for(i=0, j = $('#my-select > option');i< j.length;i++){
+                            $($(j[i]))
+                                .attr('selected',false)
+                                .trigger('select')
+                                .attr('selected',false);
                         }
-                        $('#pic').html("PIC: "+$pic);
+
+                        for(i=0;i<response.pic.length;i++){
+                            $("#my-select option[value='"+response.pic[i].id+"']")
+                                .attr('selected',true)
+                                .trigger('select')
+                                .attr('selected',true);
+                        }
+
+                        //update_pic_list();
+                        $('#my-select').select2();
+
                         $('#creator').html("Creator: "+response.creator.initial);
                         $('#status').html("Status: "+response.task.task_status);
+
+                        $('#myModal').modal('show');
                     }
+
                 });
+
             });
 
             $('.btn-update').click(function () {

@@ -12,8 +12,15 @@
     <link href="{{asset('font-awesome-4.7.0/css/font-awesome.css')}}" rel="stylesheet">
     <script src="{{asset('js/jquery-3.2.1.js')}}"></script>
     <script src={{asset('js/bootstrap.js')}}></script>
+    <script src="{{asset('js/multiselect.js')}}"></script>
+    <script src="{{asset('js/helper.js')}}"></script>
+    <script src="{{asset('js/multiselect.core.js')}}"></script>
+
     <script src="{{asset('js/bootstrap-select.js')}}"></script>
     <link href="{{ asset('css/master_ab.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/multiselect.css') }}" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 
     <title>NA-Task</title>
 </head>
